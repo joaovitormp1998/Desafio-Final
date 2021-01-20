@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/gallery.theme.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/gallery.min.css')}}">
+    <title>Cubo</title>
+</head>
+
+<body>
+    <!-- Seçao  de Cabeçalho/Menu-->
+    <section>
+
+        <img src="{{url_for('static', filename = 'image/logo.png')}}" width="230px" height="100px"></img>
+    
+    <nav  id="nav-3">
+        
+            <a class="link-3" href="#">Home</a>
+            <a class="link-3" href="#">Menu 1</a>
+            <a class="link-3" href="#">Menu 2</a>
+            <a class="link-3" href="#">Menu 3</a>
+        
+    </nav>
+    </section>
+
+  
+
+        <div class="wrapper">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+         </div>
+        <!-- Um formulário de pesquisa é uma outra maneira não linear comum de navegar por um site. -->
+        <div class="gallery autoplay items-3">
+            <div id="item-1" class="control-operator"></div>
+            <div id="item-2" class="control-operator"></div>
+            <div id="item-3" class="control-operator"></div>
+        
+            <figure class="item">
+                <img src="{{url_for('static', filename = 'image/1.png')}}"/>
+            </figure>
+        
+            <figure class="item">
+                <img src="{{url_for('static', filename = 'image/2.png')}}"/>
+            </figure>
+        
+            <figure class="item">
+                <img src="{{url_for('static', filename = 'image/3.jpg')}}"/>
+            </figure>
+        
+            <div class="controls">
+              <a href="#item-1" class="control-button">•</a>
+              <a href="#item-2" class="control-button">•</a>
+              <a href="#item-3" class="control-button">•</a>
+            </div>
+          </div>
+        
+     
+    </nav>
+    </header>
+
+    <!--  SEÇÃO PRINCIPAL COM TEXTO E FORMULÁRIO  -->
+
+    <section class="grid grid-template-rows-1">
+        <br>
+        <h1 class="servicos-titulo">Serviços</h1>
+    <div class="item"><p><img src="{{url_for('static', filename = 'image/icon1.png')}}"/><b>RHONCUS PURUS IN</b><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.took a galley<br>
+         of type and scrambled it to make a type specimen book. It has survived not only five cent<br>uries, but also the leap into electronic typesetting, remaining essentially unchanged. It wa<br>s popularised
+          in the 1960s
+         with the release of Letraset sheets containing Lorem Ipsum pas<br>sages, and more recently with desktop publishing software like Aldus PageMaker includ<br>ing versions of Lorem Ipsum</p></div>
+    <div class="item"><p><img src="{{url_for('static', filename = 'image/icon2.png')}}"/><b>MATTIS AUGE TRISTIQUE</b><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.took a galley
+         of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised
+          in the 1960s
+        with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p></div>
+            <div class="item"><p><img src="{{url_for('static', filename = 'image/icon3.png')}}"/><b>ELEMENTAUL LACUS VITAE</b><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.took a galley<br>
+         of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in 
+         the 1960s
+        with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p></div>
+	<div class="item"><p><img src="{{url_for('static', filename = 'image/icon4.png')}}"/><b>MAURIS BIBENDUM  ODIUS LIGULA</b><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
+        with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p></div>
+    </section>
+    <main>
+
+    </main>
+    
+
+    <!-- SEÇÃO SOBRE -->
+<section class="sobre-section">
+    <div class="imagem"></div>
+	<div class="sobre-texto">
+       
+    </div>
+
+</section>
+
+    <!-- SEÇÃO DE COMO FUNCIONA -->
+<section></section>
+
+    <!-- SEÇÃO DE CADASTRO-->
+<section></section>
+
+    <!-- SEÇÃO DE DADOS -->
+   
+<section></section>
+    <!-- SEÇÃO DE PRODUTOS -->
+    <section class="produtos-section">
+        <p class="produtos-titulo">Produtos</p>
+        <div class="produto">
+            {%for produto in produtos%}
+            <div class="produto-card">
+                <img src="{{'http:{link}'.format(link = produto.get_imagem())}}">
+                <div>
+                    <p class="produto-nome">{{produto.get_nome()}}</p>
+                    <p class="produto-descricao">{{produto.get_descricao()}}</p>
+                    <p class="produto-preco-anterior">De: {{'R${:,.2f}'.format(produto.get_preco_anterior())}}</p>
+                    <p class="produto-preco">Por: {{'R${:,.2f}'.format(produto.get_preco())}}</p>
+                    <p class="produto-meio-pagamento">ou {{produto.get_qtd_parcelas()}}x de
+                        {{'R${:,.2f}'.format(produto.get_valor_parcela())}}</p>
+                    <button>Comprar</button>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </section>
+
+
+    <footer>
+      &copy; Copyright 2016-Joao Vitor Monsores do Nascimento
+
+    </footer>
+</body>
+
+</html>
