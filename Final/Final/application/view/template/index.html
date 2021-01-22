@@ -7,10 +7,36 @@
     <link rel="stylesheet" href="{{url_for('static', filename = 'css/style.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename = 'css/gallery.theme.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename = 'css/gallery.min.css')}}">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <title>Cubo</title>
 </head>
 
 <body>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+  
+        function drawChart() {
+  
+          var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['Hugo',     11],
+            ['Eliza Souza',      2],
+            ['Anderson Santos',  2],
+            ['Fernanda Oliveira', 2],
+            ['Carlos',    7]
+          ]);
+  
+          var options = {
+            title: 'Dados'
+          };
+  
+          var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  
+          chart.draw(data, options);
+        }
+      </script>
+      <DIv class="estrutura">
     <!-- Seçao  de Cabeçalho/Menu-->
     <section>
 
@@ -78,7 +104,7 @@
           in the 1960s
         with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p></div>
             <div class="item"><p><img src="{{url_for('static', filename = 'image/icon3.png')}}"/><b>ELEMENTAUL LACUS VITAE</b><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.took a galley<br>
-         of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in 
+         of type and scrambled it to make a type specimen book. It has survived not only five centuries, but als the leap into electronic typesetting, remaining essentially unchanged. It was popularised in 
          the 1960s
         with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p></div>
 	<div class="item"><p><img src="{{url_for('static', filename = 'image/icon4.png')}}"/><b>MAURIS BIBENDUM  ODIUS LIGULA</b><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
@@ -90,49 +116,77 @@
     
 
     <!-- SEÇÃO SOBRE -->
-<section class="sobre-section">
-    <div class="imagem"></div>
-	<div class="sobre-texto">
-       
+<section class="sobre grid grid-template-columns" id="sobre">
+    <div class="sobre-img"><img src="{{url_for('static', filename = 'image/imagem-sobre.png')}}"/></div>
+	<div class="sobre-info">
+        <h1>SOBRE NÓS</h1>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+        doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore 
+        veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam 
+        voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur 
+        magni dolores eos, qui ratione voluptatem sequi nesciunt</p>
     </div>
 
 </section>
 
     <!-- SEÇÃO DE COMO FUNCIONA -->
-<section></section>
+<section  class="como-funciona">
+<div><center><H1>Como Funciona?</H1></center></div>
+</section>
 
     <!-- SEÇÃO DE CADASTRO-->
-<section></section>
+<section class="cadastro">
+   <center> <h1>Cadastre-se?</h1></center>
+    <div>NOME:<input></input>EMAIL<input></input>TELEFONE:<input></input><button>ENVIAR</button></div>
+</section>
 
     <!-- SEÇÃO DE DADOS -->
    
 <section></section>
     <!-- SEÇÃO DE PRODUTOS -->
     <section class="produtos-section">
-        <p class="produtos-titulo">Produtos</p>
         <div class="produto">
-            {%for produto in produtos%}
+            {%for pessoa in pessoas%}
             <div class="produto-card">
-                <img src="{{'http:{link}'.format(link = produto.get_imagem())}}">
+                <table >
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Sobrenome</th>
+                        <th>Participacao</th>
+                      </tr>
+            
                 <div>
-                    <p class="produto-nome">{{produto.get_nome()}}</p>
-                    <p class="produto-descricao">{{produto.get_descricao()}}</p>
-                    <p class="produto-preco-anterior">De: {{'R${:,.2f}'.format(produto.get_preco_anterior())}}</p>
-                    <p class="produto-preco">Por: {{'R${:,.2f}'.format(produto.get_preco())}}</p>
-                    <p class="produto-meio-pagamento">ou {{produto.get_qtd_parcelas()}}x de
-                        {{'R${:,.2f}'.format(produto.get_valor_parcela())}}</p>
-                    <button>Comprar</button>
+                    <tr></tr>
+                    <th>{{  pessoa.get_id()}}</th>
+                    
+                    <th>{{pessoa.get_nome()}}</th>
+
+                    <th>{{pessoa.get_descricao()}}</th>
+                    <th>{{ pessoa.get_imagem() }}</th><br><br>
                 </div>
             </div>
-            {%endfor%}
+            {%endfor%}</table>
+            <div id="piechart" style="width: 300px; height: 150px; align-self: start;"></div>
         </div>
     </section>
+<hr>
+<b>Cubo</b><br>
+Rua Casa do Ator ,919<br>
+0456-033 SP - São Paulo
 
+<div class="redes" align='end'>
+    <img src="{{url_for('static', filename = 'image/fb.png')}}" width="70" height="50"/>
+    <img src="{{url_for('static', filename = 'image/google+.png')}}"width="50" height="50"/>
+    
+    <img src="{{url_for('static', filename = 'image/twitter.png')}}"width="50" height="60"/>
+    <img src="{{url_for('static', filename = 'image/yt.png')}}"width="50" height="60"/>
+       </div>
 
-    <footer>
-      &copy; Copyright 2016-Joao Vitor Monsores do Nascimento
+<footer class="footer">
+        <p> &copy; Copyright 2021-Joao Vitor Monsores do Nascimento</p>
 
-    </footer>
+    </footer></DIv>
 </body>
 
 </html>
